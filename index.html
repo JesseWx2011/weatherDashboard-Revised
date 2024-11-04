@@ -5,16 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard - Revised</title>
 
-    <link rel="stylesheet" href="./style.css"/>
+    <link rel="stylesheet" href="./style.css" />
     <script type="text/javascript" src="./script.js"></script>
+    <meta name="og:title" content="Weather Dashboard - Revised!"/>
+    <meta name="og:description" content="Weather, Weather Forecast, Weather Now, Weather near me"/>
 </head>
+
 <body>
-   <div class="mainscreen">
-       <img class="backgroundimg" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Waverly%2C_NE_EF3_Tornado_on_April_26%2C_2024.jpg">
+    <div style="margin: auto;width: 35%;" id="loader">
+        <img
+            src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3RzazZid29laTd5dmI3M2dmM2NmMHU0N2NxNXl5YTk4NXhlczZodCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MXvDhlmD0eB5qNvvjZ/giphy.webp">
+        <div class="loadingtext">Loading...</div>
+    </div>
+    <div id="mainscreen" class="mainscreen">
+        <img class="backgroundimg"
+            src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Waverly%2C_NE_EF3_Tornado_on_April_26%2C_2024.jpg">
         <div class="maincard">
             <input type="text" class="cityinput" id="citysearch" placeholder="Search for a city!">
+            <button class="submitbutton" id="submit">Submit</button>
 
+            <div class="currentconditions">
+                
+            </div>
         </div>
-   </div>
-    </body>
+    </div>
+</body>
+
 </html>
+<script>// Loading Screen
+
+
+
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("mainscreen").style.animation = "fade 2s linear";
+        document.getElementById("mainscreen").style.display = "block";
+    }, 3000);
+
+
+</script>
