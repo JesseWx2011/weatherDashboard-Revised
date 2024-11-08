@@ -31,10 +31,43 @@ html {
 @keyframes fade {
     0% {
         opacity: 0%;
+        width: fit-content;
+        height: fit-content;
     }
-
     100% {
         opacity: 100%;
+        width: fit-content;
+        height: fit-content;
+    }
+}
+@keyframes fontbig {
+    0% {
+        font-size: 1em;
+    }
+    100% {
+        font-size: 18px;
+    }
+}
+@keyframes borderhover {
+      0% {
+        border-color: crimson;
+      }
+      30% {
+        border-color: magenta;
+      }
+      50% {
+        border-color: #0088ff;
+      }
+      100% {
+        border-color: #0088ff;
+      }
+}
+@keyframes credithover {
+    0% {
+        color: lightgreen
+    }
+    100% {
+        color: yellow;
     }
 }
 
@@ -82,4 +115,206 @@ html {
     margin-left: 1375px;
     height: 25px;
     width: 89px;
+}
+.selectorbuttons button {
+    background-color: grey;
+    height: 30px;
+    width: 154px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    border-radius: 13px;
+    position: absolute;
+}
+.currentconditions {
+    width: 350px;
+    height: 500px;
+    margin-top: 40px;
+    background-color: black;
+    margin-left: 25px;
+    border: crimson;
+    border-width: 5px;
+    border-style: solid;
+}
+.icon {
+    position: absolute;
+    width: 330px;
+    margin-left: 14px;
+    margin-top: -23px;
+}
+.results {
+    position: absolute;
+    width: 250px;
+    margin-left: 1128px;
+    margin-top: 56px;
+}
+.results div {
+    font-weight: 800;
+    background-color: white;
+    text-underline-position: left;
+    width: fit-content;
+    width: 600px;
+    overflow: hidden; 
+    white-space: nowrap;  
+    text-overflow: ellipsis; 
+}
+.results div a {
+    text-underline-position: left;
+}
+.temperature { 
+    color: white;
+    font-weight: 900;
+    font-size: 74px;
+    text-align: center;
+    margin-top: 361px;
+    position: absolute;
+    width: 350px;
+}
+.city {
+    font-size: 33px;
+    font-weight: 800;
+    margin-top: 62px;
+    position: absolute;
+    top: 21px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.condition {
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 271px;
+    font-size: 29px;
+    position: absolute;
+    width: 350px;
+}
+.wxcard {
+    background-color: black;
+    position: absolute; 
+    width: 250px;
+    height: 120px;
+    border-radius: 10px;
+    border: crimson;
+    border-width: 4px;
+    border-style: solid;
+}
+.cardtitle {
+    color: white;
+    font-weight: 800;
+    text-align: center;
+}
+.carddata {
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 36px;
+    justify-items: center;
+    position: static;
+    margin-top: 20px;
+}
+.cardsubdata {
+    position: absolute;
+    color: lightgrey;
+    text-align: center;
+    width: 100%;
+}
+.wxcardgateway {
+    margin-left: 322px;
+    margin-top: -175px;
+    height: 216px;
+    width: 179px;
+    background-color: black;
+    position: absolute;
+    border-radius: 10px;
+    border: crimson;
+    border-width: 4px;
+    border-style: solid;
+}
+.wxcardgatewayc {
+    display: none;
+    height: 216px;
+    width: 179px;
+    background-color: black;
+    position: absolute;
+    border-radius: 10px;
+    border: crimson;
+    border-width: 4px;
+    border-style: solid;
+}
+.currentconditions:hover {
+    animation: borderhover;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+.wxcardgateway:hover {
+    animation: borderhover;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+.wxcardgatewayc:hover {
+    animation: borderhover;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+.wxcard:hover {
+    animation: borderhover;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+#results div {
+    width: 210px;
+    height: 30px;
+    border: 1px solid #ccc;
+    margin: 2px 0;
+    padding: 2px;
+    box-sizing: border-box;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+#results div:hover {
+    border: 2px solid #0088ff;
+    box-shadow: 0 0 100px rgba(0, 123, 255, 0);
+    animation-name: fontbig;
+    animation-duration: 1.5s;
+}
+.weatherforecasticon img {
+    width: 71%;
+    margin-top: -10px;
+    margin-left: 31px;
+}
+.weatherforecastcondition {
+    color: white;
+    font-weight: 600;
+    margin-top: -15px;
+    position: absolute;
+    width: 179px;
+    text-align: center;
+}
+.weatherforecasttemp {
+    position: absolute;
+    font-size: 35px;
+    margin-top: 10px;
+    width: fit-content;
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+.wxfcstdaypart0 {
+    color: white;
+    position: absolute;
+    font-size: 13px;
+    margin-left: 65px;
+}
+.credit {
+    position: absolute;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+.credit a {
+    color: lightgreen
+}
+.credit a:hover {
+  animation: credithover;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
 }
