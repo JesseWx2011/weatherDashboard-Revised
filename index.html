@@ -7,33 +7,145 @@
 
     <link rel="stylesheet" href="./style.css" />
     <script type="text/javascript" src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="og:title" content="Weather Dashboard - Revised!"/>
     <meta name="og:description" content="Weather, Weather Forecast, Weather Now, Weather near me"/>
+    <noscript>You Browser or driver does not support JavaScript to Run this Application.</noscript>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/svg" href="./icons/28.svg">
 </head>
 
 <body>
     <div style="margin: auto;width: 35%;" id="loader">
-        <img
-            src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3RzazZid29laTd5dmI3M2dmM2NmMHU0N2NxNXl5YTk4NXhlczZodCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MXvDhlmD0eB5qNvvjZ/giphy.webp">
+        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3RzazZid29laTd5dmI3M2dmM2NmMHU0N2NxNXl5YTk4NXhlczZodCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MXvDhlmD0eB5qNvvjZ/giphy.webp">
         <div class="loadingtext">Loading...</div>
     </div>
     <div id="mainscreen" class="mainscreen">
+        <div id="currentconditionswx">
         <img class="backgroundimg"
             src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Waverly%2C_NE_EF3_Tornado_on_April_26%2C_2024.jpg">
         <div class="maincard">
+            <div id="currentconditionscards">
             <input type="text" class="cityinput" id="citysearch" placeholder="Search for a city!">
-            <button class="submitbutton" id="submit">Submit</button>
-
-            <div class="currentconditions">
-                
+          <div id="results" class="results"></div>
+        </input>
+        <div class="city" id="wxcity">Look Up a City!</div>
+            <button class="submitbutton" id="submit" onclick="submit()">Submit</button>
+              <div class="selectorbuttons">
+                <button id="currentconditionsactiveb" onclick="button1()" style="background-color: lightgrey; margin-left: 500px; margin-top: -54px;">Current Weather</button>
+                <button id="forecast" style="margin-left: 694px; margin-top: -54px;">Weather Forecast</button>
+              </div>
+            <div class="currentconditions" id="card0">
+                <div id="icondiv"></div>
+                <div class="condition" id="wxcondition">Sunny</div>
+                <div class="temperature" id="wxtemp">32°F</div>
             </div>
+            <div class="wxcard" id="card1" style="margin-left: 440px;margin-top: -510px;">
+        <div class="cardtitle">Humidity</div>
+        <div class="carddata" id="wxhum">0%</div>
+    </div>
+    <div class="wxcard" id="card2" style="margin-left: 440px;margin-top: -330px;">
+        <div class="cardtitle">Feels Like</div>
+        <div class="carddata" id="wxfeels">32°F</div>
+    </div>
+    <div class="wxcard" id="card3" style="margin-left: 440px;margin-top: -160px;">
+        <div class="cardtitle">Wind Speed</div>
+        <div class="carddata" id="wxwindspeed">Calm</div>
+        <div class="cardsubdata" id="wxdirection">Blowing to the North</div>
+    </div>
+    <div class="wxcard" id="card4" style="margin-left: 800px;margin-top: -510px;">
+        <div class="cardtitle">Dew Point</div>
+        <div class="carddata" id="wxdew">32°F</div>
+    </div>
+    <div class="wxcard" id="card5" style="margin-left: 800px;margin-top: -330px;">
+        <div class="cardtitle">Barometric Pressure</div>
+        <div class="carddata" id="wxpressure">29.92 inHg</div>
+    </div>
+    <div class="wxcard" id="card6" style="margin-left: 800px;margin-top: -160px;">
+        <div class="cardtitle">UV Index</div>
+        <div class="carddata" id="wxuv">0</div>
+        <div class="cardsubdata" id="wxuvword">The UV is Low.</div>
+        <div class="wxcardgateway" id="gatewaycard">
+            <div class="cardtitle">Short Weather Forecast</div>
+            <div class="wxfcstdaypart0" id="wxdaypart0">Sunday</div>
+            <div class="weatherforecasticon" id="weatherforecasticon"></div>
+            <div class="weatherforecastcondition" id="wxfcstcondition">Sunny</div>
+            <div class="weatherforecasttemp" id="wxfcsttemp0">32°F</div>
+        </div> 
+    </div>
         </div>
+    </div>
+</div>
+    <!-- End of Current Conditions WX-->
+     <div class="forecastscards" id="forecastscards">        
+        <div class="wxcardgatewayc" id="card7" style="margin-top: 350px; margin-left: 6px;">
+            <div class="cardtitle" id="daypart0f">Sunday</div>
+            <div class="weatherforecasticon" id="weatherforecasticon0"></div>
+            <div class="weatherforecastcondition" id="wxfcstcondition0">Sunny</div>
+            <div class="weatherforecasttemp" id="wxfcsttemp0f">32°F</div>
+        </div>
+        <div class="wxcardgatewayc" id="card8" style="margin-top: 350px;margin-left: 202px;">
+            <div class="cardtitle" id="daypart1">Sunday</div>
+            <div class="weatherforecasticon" id="weatherforecasticon1"></div>
+            <div class="weatherforecastcondition" id="wxfcstcondition1">Sunny</div>
+            <div class="weatherforecasttemp" id="wxfcsttemp1">32°F</div>
+        </div>
+        <div class="wxcardgatewayc" id="card9" style="margin-top: 350px; margin-left: 398px;">
+            <div class="cardtitle" id="daypart2">Sunday</div>
+            <div class="weatherforecasticon" id="weatherforecasticon2"></div>
+            <div class="weatherforecastcondition" id="wxfcstcondition2">Sunny</div>
+            <div class="weatherforecasttemp" id="wxfcsttemp2">32°F</div>
+        </div>
+        <div class="wxcardgatewayc" id="card10" style="margin-top: 350px; margin-left: 594px;">
+            <div class="cardtitle" id="daypart3">Sunday</div>
+            <div class="weatherforecasticon" id="weatherforecasticon3"></div>
+            <div class="weatherforecastcondition" id="wxfcstcondition3">Sunny</div>
+            <div class="weatherforecasttemp" id="wxfcsttemp3">32°F</div>
+        </div>
+        <div class="wxcardgatewayc" id="card11" style="margin-top: 350px; margin-left: 790px;">
+            <div class="cardtitle" id="daypart4">Sunday</div>
+            <div class="weatherforecasticon" id="weatherforecasticon4"></div>
+            <div class="weatherforecastcondition" id="wxfcstcondition4">Sunny</div>
+            <div class="weatherforecasttemp" id="wxfcsttemp4">32°F</div>
+        </div>
+        <div class="wxcardgatewayc" id="card12" style="margin-top: 350px; margin-left: 986px;">
+            <div class="cardtitle" id="daypart5">Sunday</div>
+            <div class="weatherforecasticon" id="weatherforecasticon5"></div>
+            <div class="weatherforecastcondition" id="wxfcstcondition5">Sunny</div>
+            <div class="weatherforecasttemp" id="wxfcsttemp5">32°F</div>
+        </div>
+        <div class="wxcardgatewayc" id="card13" style="margin-top: 350px; margin-left: 1182px;">
+            <div class="cardtitle" id="daypart6">Sunday</div>
+            <div class="weatherforecasticon" id="weatherforecasticon6"></div>
+            <div class="weatherforecastcondition" id="wxfcstcondition6">Sunny</div>
+            <div class="weatherforecasttemp" id="wxfcsttemp6">32°F</div>
+        </div>
+        <div class="wxcardgatewayc" id="card13" style="margin-top: 350px; margin-left: 1378px;">
+            <div class="cardtitle" id="daypart7">Sunday</div>
+            <div class="weatherforecasticon" id="weatherforecasticon7"></div>
+            <div class="weatherforecastcondition" id="wxfcstcondition7">Sunny</div>
+            <div class="weatherforecasttemp" id="wxfcsttemp7">32°F</div>
+        </div>
+     </div>
+     <!-- End of Forecast Cards -->
+      <div class="credit">Icons are by <a href="https://bas.dev/work/meteocons">Bas Millus</a>. Developed by <a href="https://x.com/JesseWeather000">Jesse Hasty</a> and with refrences from Windows CoPilot.</div>
     </div>
 </body>
 
 </html>
 <script>// Loading Screen
 
+
+// Get the current URL
+const url = window.location.href;
+
+// Check if the URL contains "?city"
+if (url.includes('?city')) {
+   document.getElementById("loader").style.display = "none"
+   document.getElementById("mainscreen").style.animation = "fade 2s linear";
+   document.getElementById("mainscreen").style.display = "block";
+ }
 
 
     setTimeout(() => {
@@ -42,5 +154,192 @@
         document.getElementById("mainscreen").style.display = "block";
     }, 3000);
 
+     async function submit() {
+ const input = document.getElementById("citysearch").value
+}
 
+    document.getElementById("forecast").addEventListener("click", function() {
+           document.getElementById("forecast").style.backgroundColor = "lightgrey"
+           document.getElementById("forecast").id = "forecastactive"
+           document.getElementById("currentconditionsactiveb").style.backgroundColor = "grey"
+           document.getElementById("currentconditionsactiveb").id = "currentconditionsb"
+           document.getElementById("card0").style.display = "none"
+           document.getElementById("card1").style.display = "none"
+           document.getElementById("card2").style.display = "none"
+           document.getElementById("card3").style.display = "none"
+           document.getElementById("card4").style.display = "none"
+           document.getElementById("card5").style.display = "none"
+           document.getElementById("card6").style.display = "none"
+           document.getElementById("card7").style.display = "block"
+           document.getElementById("card8").style.display = "block"
+           document.getElementById("card9").style.display = "block"
+           document.getElementById("card10").style.display = "block"
+           document.getElementById("card11").style.display = "block"
+           document.getElementById("card12").style.display = "block"
+           document.getElementById("card13").style.display = "block"
+           document.getElementById("card14").style.display = "block"
+
+        })
+function button1() {
+    document.getElementById("currentconditionsb").addEventListener("click", function() {
+           document.getElementById("currentconditionsb").style.backgroundColor = "lightgrey"
+           document.getElementById("forecastactive").style.backgroundColor = "grey"
+           document.getElementById("forecastactive").id = "forecast" 
+           document.getElementById("currentconditionsb").id = "currentconditionsactiveb"
+
+           document.getElementById("card0").style.display = "block"
+           document.getElementById("card1").style.display = "block"
+           document.getElementById("card2").style.display = "block"
+           document.getElementById("card3").style.display = "block"
+           document.getElementById("card4").style.display = "block"
+           document.getElementById("card5").style.display = "block"
+           document.getElementById("card6").style.display = "block"
+           document.getElementById("card7").style.display = "none"
+           document.getElementById("card8").style.display = "none"
+           document.getElementById("card9").style.display = "none"
+           document.getElementById("card10").style.display = "none"
+           document.getElementById("card11").style.display = "none"
+           document.getElementById("card12").style.display = "none"
+           document.getElementById("card13").style.display = "none"
+           document.getElementById("card14").style.display = "none"
+
+
+    })
+
+}
+
+
+// Get The Cities
+// Fetch the JSON data
+fetch('https://raw.githubusercontent.com/JesseWx2011/weatherDashboard-Revised/refs/heads/master/node_modules/citiesjson/cities.json')
+ .then(response => response.json())
+ .then(data => 
+ { document.getElementById('citysearch').addEventListener('input', function() {
+     const searchString = this.value.toLowerCase(); 
+     const filteredCountries = ["US", "CA", "FR", "GB", "AU", "JP", "NZ"]; 
+     const results = data.filter(city => (city.name.toLowerCase().includes(searchString) || (city.admin1 && `${city.name}, ${city.admin1}`.toLowerCase().includes(searchString))) && filteredCountries.includes(city.country) ).slice(0, 8);
+      displayResults(results);
+     }); 
+    }) 
+    
+    .catch(error => console.error('Error fetching the JSON:', error));
+    results.sort((a, b) => { const priorityCountries = ["US"]; if (priorityCountries.includes(a.country) && !priorityCountries.includes(b.country)) { return -1; } else if (!priorityCountries.includes(a.country) && priorityCountries.includes(b.country)) { return 1; } else { return 0; } });
+// Function to display results
+function displayResults(results) {
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = ''; // Clear previous results
+
+    results.forEach(city => {
+        const cityDiv = document.createElement('div');
+        const cityLink = document.createElement('a');
+        cityLink.style.textUnderlineOffset = "5000px"
+
+        cityLink.href = `./?city=${city.name}`;
+        cityLink.textContent = `${city.name}, ${city.admin1} ${city.country || 'N/A'}`;
+        cityLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            fetchWeatherData(city.lat, city.lng);
+            document.getElementById("wxcity").textContent = "Weather for " + city.name + ", " + city.admin1 + ", " + city.country
+        });
+        cityDiv.appendChild(cityLink);
+        resultsDiv.appendChild(cityDiv);
+
+        
+    });
+}
+
+// Function to fetch weather data using async/await
+async function fetchWeatherData(lat, lng) {
+    const apiKey = '8de2d8b3a93542c9a2d8b3a935a2c909';
+    const apiUrl = `https://api.weather.com/v3/aggcommon/v3-wx-almanac-daily-1day;v3alertsHeadlines;v3-wx-observations-current;v3-wx-forecast-daily-7day?geocode=${lat},${lng}&format=json&language=en-US&units=e&day=16&month=10&apiKey=${apiKey}`;
+    
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        console.log(data);
+        console.log(apiUrl)
+  
+windspeed = data["v3-wx-observations-current"].windSpeed
+ if (windspeed === 0) {
+    windspeed = "Calm"
+ } else {
+    windspeed = data["v3-wx-observations-current"].windSpeed + " mph"
+ }
+  weathericon = data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[0]
+ if (weathericon === null) {
+    weathericon = data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[1]
+ }
+ weatherforecast0 = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[0]
+ if (weatherforecast0 === null) {
+    weatherforecast0 = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[1]
+ }
+ if (weathericon === null) {
+    weathericon = data["v3-wx-forecast-daily-7day"].daypart[0].temperature[0]
+ }
+ wxfcsttemp0 = data["v3-wx-forecast-daily-7day"].daypart[0].temperature[0]
+ if (wxfcsttemp0 === null) {
+    wxfcsttemp0 = data["v3-wx-forecast-daily-7day"].daypart[0].temperature[1]
+ }
+ daypart0 = data["v3-wx-forecast-daily-7day"].daypart[0].daypartName[0]
+ if (daypart0 === null) {
+    daypart0 = data["v3-wx-forecast-daily-7day"].daypart[0].daypartName[1]
+ }
+
+        document.getElementById("wxtemp").innerHTML = `${data["v3-wx-observations-current"].temperature}°F`
+        document.getElementById("wxcondition").innerHTML = `${data["v3-wx-observations-current"].wxPhraseMedium}`
+        document.getElementById("icondiv").innerHTML = `<<img class="icon" id="wxicon" src="./icons/${data["v3-wx-observations-current"].iconCode}.svg">`
+        document.getElementById("wxhum").textContent = data["v3-wx-observations-current"].relativeHumidity + "%"
+        document.getElementById("wxfeels").textContent = data["v3-wx-observations-current"].temperatureFeelsLike + "°F"
+        document.getElementById("wxwindspeed").textContent = windspeed
+        document.getElementById("wxdirection").textContent = "Blowing to the " + data["v3-wx-observations-current"].windDirectionCardinal
+        document.getElementById("wxdew").textContent = data["v3-wx-observations-current"].temperatureDewPoint + "°F"
+         document.getElementById("wxpressure").textContent = data["v3-wx-observations-current"].pressureAltimeter + " inHg"
+         document.getElementById("wxuv").textContent = data["v3-wx-observations-current"].uvIndex
+         document.getElementById("wxuvword").textContent = "The UV index is " + data["v3-wx-observations-current"].uvDescription + "."
+        
+        // Weather Forecast
+        document.getElementById("wxfcstconditiona").textContent = weatherforecast0
+        document.getElementById("wxfcsttemp0").textContent = wxfcsttemp0 + "°F"
+        document.getElementById("weatherforecasticon").innerHTML = `<img src="./icons/${weathericon}.svg">`
+        document.getElementById("weatherforecasticon0").innerHTML = `<img src="./icons/${weathericon}.svg">`
+        document.getElementById("wxfcstcondition0").textContent = weatherforecast0
+        document.getElementById("wxfcsttemp0f").textContent = wxfcsttemp0 + "°F"
+        document.getElementById("wxdaypart0").textContent = daypart0
+        document.getElementById("daypart0f").textContent = daypart0 
+
+        document.getElementById("wxfcsttemp1").textContent = data["v3-wx-forecast-daily-7day"].calendarDayTemperatureMax[1] + "°F"
+        document.getElementById("daypart1").textContent = data["v3-wx-forecast-daily-7day"].dayOfWeek[1]
+        document.getElementById("weatherforecasticon1").innerHTML = `<img src="./icons/${data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[4]}.svg">`
+        document.getElementById("wxfcstcondition1").textContent = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[4]
+
+        
+        document.getElementById("wxfcsttemp2").textContent = data["v3-wx-forecast-daily-7day"].calendarDayTemperatureMax[2] + "°F"
+        document.getElementById("daypart2").textContent = data["v3-wx-forecast-daily-7day"].dayOfWeek[2]
+        document.getElementById("weatherforecasticon2").innerHTML = `<img src="./icons/${data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[6]}.svg">`
+        document.getElementById("wxfcstcondition2").textContent = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[6]
+
+        document.getElementById("wxfcsttemp3").textContent = data["v3-wx-forecast-daily-7day"].calendarDayTemperatureMax[3] + "°F"
+        document.getElementById("daypart3").textContent = data["v3-wx-forecast-daily-7day"].dayOfWeek[3]
+        document.getElementById("weatherforecasticon3").innerHTML = `<img src="./icons/${data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[8]}.svg">`
+        document.getElementById("wxfcstcondition3").textContent = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[8]
+        
+        document.getElementById("wxfcsttemp4").textContent = data["v3-wx-forecast-daily-7day"].calendarDayTemperatureMax[4] + "°F"
+        document.getElementById("daypart4").textContent = data["v3-wx-forecast-daily-7day"].dayOfWeek[4]
+        document.getElementById("weatherforecasticon4").innerHTML = `<img src="./icons/${data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[10]}.svg">`
+        document.getElementById("wxfcstcondition4").textContent = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[10]
+        
+        document.getElementById("wxfcsttemp5").textContent = data["v3-wx-forecast-daily-7day"].calendarDayTemperatureMax[5] + "°F"
+        document.getElementById("daypart5").textContent = data["v3-wx-forecast-daily-7day"].dayOfWeek[5]
+        document.getElementById("weatherforecasticon5").innerHTML = `<img src="./icons/${data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[12]}.svg">`
+        document.getElementById("wxfcstcondition5").textContent = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[12]
+
+        document.getElementById("wxfcsttemp6").textContent = data["v3-wx-forecast-daily-7day"].calendarDayTemperatureMax[6] + "°F"
+        document.getElementById("daypart6").textContent = data["v3-wx-forecast-daily-7day"].dayOfWeek[6]
+        document.getElementById("weatherforecasticon6").innerHTML = `<img src="./icons/${data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[14]}.svg">`
+        document.getElementById("wxfcstcondition6").textContent = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[14]
+
+        document.getElementById("wxfcsttemp7").textContent = data["v3-wx-forecast-daily-7day"].calendarDayTemperatureMax[7] + "°F"
+        document.getElementById("daypart7").textContent = data["v3-wx-forecast-daily-7day"].dayOfWeek[7]
+        document.getElementById("weatherforecasticon7").innerHTML = `<img src="./icons/${data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[14]}.svg">`
+        document.getElementById("wxfcstcondition7").textContent = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[14]
+  }
 </script>
