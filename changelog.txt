@@ -154,6 +154,6 @@ Revised Font
 Hovering over a City in the dropdown will play an animation
 Known bugs in the previous project have been fixed.
 Page Loads much quickly. 
-7 Day Forecast in a seperate section
+7 Day Forecast in a separate section
 New Background Image
 Updated Credits
