@@ -27,50 +27,85 @@ html {
         transform: rotate(360deg);
     }
 }
-
+@keyframes alertcardhover {
+     0% {
+        background-image: linear-gradient(to bottom, red);
+     }
+     100% {
+        background-image: linear-gradient(to bottom, red, darkred);
+     }
+}
 @keyframes fade {
     0% {
         opacity: 0%;
         width: fit-content;
         height: fit-content;
     }
+
     100% {
         opacity: 100%;
         width: fit-content;
         height: fit-content;
     }
 }
+
 @keyframes fontbig {
     0% {
         font-size: 1em;
     }
+
     100% {
         font-size: 18px;
     }
 }
+
 @keyframes borderhover {
-      0% {
+    0% {
         border-color: crimson;
-      }
-      30% {
+    }
+
+    30% {
         border-color: magenta;
-      }
-      50% {
+    }
+
+    50% {
         border-color: #0088ff;
-      }
-      100% {
+    }
+
+    100% {
         border-color: #0088ff;
-      }
+    }
 }
+
 @keyframes credithover {
     0% {
         color: lightgreen
     }
+
     100% {
         color: yellow;
     }
 }
-
+@keyframes alertintro {
+    0% {
+       margin-left: 1532px;
+       margin-top: 551px;
+    }
+    100% {
+        margin-left: 884px;
+        margin-top: 551px;
+    }
+}
+@keyframes alertslide {
+    0% {
+        margin-left: 884px;
+        margin-top: 551px;
+    }
+    100% {
+            margin-left: 1532px;
+            margin-top: 551px;
+    }
+}
 .loadingtext {
     text-align: center;
     font-size: 25px;
@@ -116,6 +151,7 @@ html {
     height: 25px;
     width: 89px;
 }
+
 .selectorbuttons button {
     background-color: grey;
     height: 30px;
@@ -125,6 +161,7 @@ html {
     border-radius: 13px;
     position: absolute;
 }
+
 .currentconditions {
     width: 350px;
     height: 500px;
@@ -135,32 +172,37 @@ html {
     border-width: 5px;
     border-style: solid;
 }
+
 .icon {
     position: absolute;
     width: 330px;
     margin-left: 14px;
     margin-top: -23px;
 }
+
 .results {
     position: absolute;
     width: 250px;
     margin-left: 1128px;
     margin-top: 56px;
 }
+
 .results div {
     font-weight: 800;
     background-color: white;
     text-underline-position: left;
     width: fit-content;
     width: 600px;
-    overflow: hidden; 
-    white-space: nowrap;  
-    text-overflow: ellipsis; 
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
+
 .results div a {
     text-underline-position: left;
 }
-.temperature { 
+
+.temperature {
     color: white;
     font-weight: 900;
     font-size: 74px;
@@ -169,6 +211,7 @@ html {
     position: absolute;
     width: 350px;
 }
+
 .city {
     font-size: 33px;
     font-weight: 800;
@@ -179,6 +222,7 @@ html {
     transform: translate(-50%, -50%);
     text-align: center;
 }
+
 .condition {
     color: white;
     font-weight: 700;
@@ -188,9 +232,10 @@ html {
     position: absolute;
     width: 350px;
 }
+
 .wxcard {
     background-color: black;
-    position: absolute; 
+    position: absolute;
     width: 250px;
     height: 120px;
     border-radius: 10px;
@@ -198,11 +243,13 @@ html {
     border-width: 4px;
     border-style: solid;
 }
+
 .cardtitle {
     color: white;
     font-weight: 800;
     text-align: center;
 }
+
 .carddata {
     color: white;
     text-align: center;
@@ -212,12 +259,14 @@ html {
     position: static;
     margin-top: 20px;
 }
+
 .cardsubdata {
     position: absolute;
     color: lightgrey;
     text-align: center;
     width: 100%;
 }
+
 .wxcardgateway {
     margin-left: 322px;
     margin-top: -175px;
@@ -230,6 +279,7 @@ html {
     border-width: 4px;
     border-style: solid;
 }
+
 .wxcardgatewayc {
     display: none;
     height: 216px;
@@ -241,26 +291,31 @@ html {
     border-width: 4px;
     border-style: solid;
 }
+
 .currentconditions:hover {
     animation: borderhover;
     animation-duration: 3s;
     animation-iteration-count: infinite;
 }
+
 .wxcardgateway:hover {
     animation: borderhover;
     animation-duration: 3s;
     animation-iteration-count: infinite;
 }
+
 .wxcardgatewayc:hover {
     animation: borderhover;
     animation-duration: 3s;
     animation-iteration-count: infinite;
 }
+
 .wxcard:hover {
     animation: borderhover;
     animation-duration: 3s;
     animation-iteration-count: infinite;
 }
+
 #results div {
     width: 210px;
     height: 30px;
@@ -277,11 +332,13 @@ html {
     animation-name: fontbig;
     animation-duration: 1.5s;
 }
+
 .weatherforecasticon img {
     width: 71%;
     margin-top: -10px;
     margin-left: 31px;
 }
+
 .weatherforecastcondition {
     color: white;
     font-weight: 600;
@@ -290,6 +347,7 @@ html {
     width: 179px;
     text-align: center;
 }
+
 .weatherforecasttemp {
     position: absolute;
     font-size: 35px;
@@ -299,22 +357,131 @@ html {
     color: white;
     width: 100%;
 }
+
 .wxfcstdaypart0 {
     color: white;
     position: absolute;
     font-size: 13px;
     margin-left: 65px;
 }
+
 .credit {
     position: absolute;
     color: white;
     font-family: 'Montserrat', sans-serif;
 }
+
 .credit a {
     color: lightgreen
 }
+
 .credit a:hover {
-  animation: credithover;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
+    animation: credithover;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+#alert-card {
+    width: 80%;
+    border: 2px solid #ff0000;
+    background-color: #ff0000;
+    /* Red background */
+    color: #fff;
+    /* White text */
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+#alert-card h2 {
+    margin: 0;
+    color: #fff;
+    /* Ensure headline text is white */
+}
+
+#alert-card p {
+    margin: 5px 0;
+}
+
+#alert-card {
+    position: absolute;
+    width: 100%;
+    max-width: 600px;
+    border: 2px solid #ff0000;
+    background-image: linear-gradient(to bottom, red, red);
+    color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    /* Initially hidden */
+}
+
+#alert-card.visible {
+    display: block;
+}
+
+#alert-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: #fff;
+}
+
+#alert-card p {
+    margin: 5px 0;
+    color: #fff;
+}
+
+#map {
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    border: 1px solid #ccc;
+}
+
+#alerts {
+    width: 100%;
+    max-width: 600px;
+}
+
+.alert {
+    border: 1px solid #ff0000;
+    background-color: #ffe5e5;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.alert h3 {
+    margin: 0 0 10px 0;
+    color: #ff0000;
+}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #fff;
+    color: #ff0000;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button:hover {
+    background-color: #ccc;
+}
+.alertcard:hover {
+    animation: "alertcardhover 4s linear"
 }

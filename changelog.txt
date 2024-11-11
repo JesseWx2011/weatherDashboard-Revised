@@ -157,3 +157,6 @@ Page Loads much quickly.
 7 Day Forecast in a separate section
 New Background Image
 Updated Credits
+v3.1 (11-11-2024):
+Fixed Icon Bugs 
+Weather Alert System

@@ -129,6 +129,13 @@
         </div>
      </div>
      <!-- End of Forecast Cards -->
+     <div class="alertcard" id="alert-card"> 
+        <span class="close-button" id="close-button">&times;</span>
+        <h2 id="alertwx">Tornado Warning</h2>
+        <p id="involved"><strong>For:</strong> Orangeburg, SC</p>
+        <p id="start"><strong>Effective:</strong> 4:49 PM CST</p>
+        <p id="end"><strong>Expires:</strong> 5:15 PM CST</p>
+        </div>
       <div class="credit">Icons are by <a href="https://bas.dev/work/meteocons">Bas Millus</a>. Developed by <a href="https://x.com/JesseWeather000">Jesse Hasty</a> and with refrences from Windows CoPilot.</div>
     </div>
 </body>
@@ -341,5 +348,37 @@ windspeed = data["v3-wx-observations-current"].windSpeed
         document.getElementById("daypart7").textContent = data["v3-wx-forecast-daily-7day"].dayOfWeek[7]
         document.getElementById("weatherforecasticon7").innerHTML = `<img src="./icons/${data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[14]}.svg">`
         document.getElementById("wxfcstcondition7").textContent = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[14]
-  }
+
+        // Fetch Alerts
+    const alertCard = document.getElementById('alert-card')
+
+
+            const alerts = data["v3alertsHeadlines"].alerts[0];
+
+        if (alerts !== null) {
+        
+            var effectivetime = new Date(data["v3alertsHeadlines"].alerts[0].issueTimeLocal).toLocaleString("en-US", {timeStyle: "short", dateStyle: 'short'})
+
+            var expiretime = new Date(data["v3alertsHeadlines"].alerts[0].expireTimeLocal).toLocaleString("en-US", {timeStyle: "short", dateStyle: 'short'})
+            document.getElementById("alertwx").textContent = data["v3alertsHeadlines"].alerts[0].eventDescription
+            document.getElementById("involved").innerHTML = `<strong>For:</strong> ${data["v3alertsHeadlines"].alerts[0].areaName}`
+            document.getElementById("start").innerHTML = `<strong>Effective:</strong> ${effectivetime}`
+            document.getElementById("end").innerHTML = `<strong>Effective:</strong> ${expiretime}`
+            console.log("ALERT, " + alert.headlineText)
+            alertCard.style.display = "block"
+            alertCard.style.animation = "alertintro 1s ease"
+            alertCard.style.marginLeft = "884px";
+            alertCard.style.marginTop = "551px"
+
+document.getElementById("close-button").addEventListener("click", function() {
+    const alertCard = document.getElementById("alert-card");
+    alertCard.style.animation = "alertslide 1s ease";
+
+    alertCard.addEventListener("animationend", function() {
+        alertCard.style.display = "none";
+    }, { once: true }); // Listen for the animation end event once
+});
+        } 
+    }
+    // Example: Fetch and display alerts for a specific location (Chicago, IL)
 </script>
