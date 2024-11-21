@@ -160,3 +160,6 @@ Updated Credits
 v3.1 (11-11-2024):
 Fixed Icon Bugs 
 Weather Alert System
+v3.15 (11-21-2024):
+Added in placeholders for Almanac Cards (Not fully ready yet)
+Added Function for multiple alerts

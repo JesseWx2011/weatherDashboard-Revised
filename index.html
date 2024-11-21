@@ -79,6 +79,14 @@
 </div>
     <!-- End of Current Conditions WX-->
      <div class="forecastscards" id="forecastscards">        
+        <div class="wxcarda" id="card15" style="margin-left: 51px; margin-top: 59px; display: none;">
+            <div class="cardtitle" id="alamanacday0">Record High for January 1st</div>
+            <div class="weatherforecasttemp" id="almanactemp0">32°F</div>
+        </div>
+        <div class="wxcarda" id="card16" style="margin-left: 602px; margin-top: 59px; display: none;">
+            <div class="cardtitle" id="alamanacday1">Record High for January 2nd</div>
+            <div class="weatherforecasttemp" id="almanactemp1">32°F</div>
+        </div>
         <div class="wxcardgatewayc" id="card7" style="margin-top: 350px; margin-left: 6px;">
             <div class="cardtitle" id="daypart0f">Sunday</div>
             <div class="weatherforecasticon" id="weatherforecasticon0"></div>
@@ -127,15 +135,14 @@
             <div class="weatherforecastcondition" id="wxfcstcondition7">Sunny</div>
             <div class="weatherforecasttemp" id="wxfcsttemp7">32°F</div>
         </div>
+        <!-- Almanac Card -->
+
      </div>
      <!-- End of Forecast Cards -->
-     <div class="alertcard" id="alert-card"> 
-        <span class="close-button" id="close-button">&times;</span>
-        <h2 id="alertwx">Tornado Warning</h2>
-        <p id="involved"><strong>For:</strong> Orangeburg, SC</p>
-        <p id="start"><strong>Effective:</strong> 4:49 PM CST</p>
-        <p id="end"><strong>Expires:</strong> 5:15 PM CST</p>
-        </div>
+<!-- Weather Alert Section -->
+<div id="alert-container">
+</div>
+
       <div class="credit">Icons are by <a href="https://bas.dev/work/meteocons">Bas Millus</a>. Developed by <a href="https://x.com/JesseWeather000">Jesse Hasty</a> and with refrences from Windows CoPilot.</div>
     </div>
 </body>
@@ -161,6 +168,7 @@ if (url.includes('?city')) {
         document.getElementById("mainscreen").style.display = "block";
     }, 3000);
 
+    
      async function submit() {
  const input = document.getElementById("citysearch").value
 }
@@ -185,14 +193,17 @@ if (url.includes('?city')) {
            document.getElementById("card12").style.display = "block"
            document.getElementById("card13").style.display = "block"
            document.getElementById("card14").style.display = "block"
+           
+           document.getElementById("card15").style.display === "block"
+           document.getElementById("card16").style.display === "block"
 
         })
 function button1() {
     document.getElementById("currentconditionsb").addEventListener("click", function() {
-           document.getElementById("currentconditionsb").style.backgroundColor = "lightgrey"
-           document.getElementById("forecastactive").style.backgroundColor = "grey"
-           document.getElementById("forecastactive").id = "forecast" 
-           document.getElementById("currentconditionsb").id = "currentconditionsactiveb"
+           document.getElementById("currentconditionsb").style.backgroundColor = "lightgrey";
+           document.getElementById("forecastactive").style.backgroundColor = "grey";
+           document.getElementById("forecastactive").id = "forecast";
+           document.getElementById("currentconditionsb").id = "currentconditionsactiveb";
 
            document.getElementById("card0").style.display = "block"
            document.getElementById("card1").style.display = "block"
@@ -209,8 +220,8 @@ function button1() {
            document.getElementById("card12").style.display = "none"
            document.getElementById("card13").style.display = "none"
            document.getElementById("card14").style.display = "none"
-
-
+           document.getElementById("card15").style.display = "none"
+           document.getElementById("card16").style.display = "none"
     })
 
 }
@@ -223,7 +234,7 @@ fetch('https://raw.githubusercontent.com/JesseWx2011/weatherDashboard-Revised/re
  .then(data => 
  { document.getElementById('citysearch').addEventListener('input', function() {
      const searchString = this.value.toLowerCase(); 
-     const filteredCountries = ["US", "CA", "FR", "GB", "AU", "JP", "NZ"]; 
+     const filteredCountries = ["US", "CA", "FR", "GB", "AU", "JP", "NZ", "GU"]; 
      const results = data.filter(city => (city.name.toLowerCase().includes(searchString) || (city.admin1 && `${city.name}, ${city.admin1}`.toLowerCase().includes(searchString))) && filteredCountries.includes(city.country) ).slice(0, 8);
       displayResults(results);
      }); 
@@ -251,14 +262,17 @@ function displayResults(results) {
         cityDiv.appendChild(cityLink);
         resultsDiv.appendChild(cityDiv);
 
-        
+
     });
 }
 
 // Function to fetch weather data using async/await
 async function fetchWeatherData(lat, lng) {
+    
+    const todaymonth = new Date().getMonth() + 1
+        const todayday = new Date().getDate()
     const apiKey = '8de2d8b3a93542c9a2d8b3a935a2c909';
-    const apiUrl = `https://api.weather.com/v3/aggcommon/v3-wx-almanac-daily-1day;v3alertsHeadlines;v3-wx-observations-current;v3-wx-forecast-daily-7day?geocode=${lat},${lng}&format=json&language=en-US&units=e&day=16&month=10&apiKey=${apiKey}`;
+    const apiUrl = `https://api.weather.com/v3/aggcommon/v3-wx-almanac-daily-1day;v3alertsHeadlines;v3-wx-observations-current;v3-wx-forecast-daily-7day?geocode=${lat},${lng}&format=json&language=en-US&units=e&day=${todayday}&month=${todaymonth}&apiKey=${apiKey}`;
     
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -349,36 +363,77 @@ windspeed = data["v3-wx-observations-current"].windSpeed
         document.getElementById("weatherforecasticon7").innerHTML = `<img src="./icons/${data["v3-wx-forecast-daily-7day"].daypart[0].iconCode[14]}.svg">`
         document.getElementById("wxfcstcondition7").textContent = data["v3-wx-forecast-daily-7day"].daypart[0].wxPhraseShort[14]
 
-        // Fetch Alerts
-    const alertCard = document.getElementById('alert-card')
+        // Almanac
+        document.getElementById("alamanacday0").textContent = "Record High for " + new Date().toLocaleDateString("en-US", {dateStyle: "medium"})
+        document.getElementById("alamanacday1").textContent = "Record Low for " + new Date().toLocaleDateString("en-US", {dateStyle: "medium"})
 
+if (data["v3-wx-almanac-daily-1day"].temperatureRecordMax[0] !== null) {
+        document.getElementById("almanactemp0").textContent =  data["v3-wx-almanac-daily-1day"].temperatureRecordMax[0] + "°F"
+        document.getElementById("almanactemp1").textContent = data["v3-wx-almanac-daily-1day"].temperatureRecordMin[0] + "°F"
+    } else {
+        document.getElementById("almanactemp0").textContent = "N/A"
+        document.getElementById("almanactemp1").textContent = "N/A"
 
-            const alerts = data["v3alertsHeadlines"].alerts[0];
-
-        if (alerts !== null) {
-        
-            var effectivetime = new Date(data["v3alertsHeadlines"].alerts[0].issueTimeLocal).toLocaleString("en-US", {timeStyle: "short", dateStyle: 'short'})
-
-            var expiretime = new Date(data["v3alertsHeadlines"].alerts[0].expireTimeLocal).toLocaleString("en-US", {timeStyle: "short", dateStyle: 'short'})
-            document.getElementById("alertwx").textContent = data["v3alertsHeadlines"].alerts[0].eventDescription
-            document.getElementById("involved").innerHTML = `<strong>For:</strong> ${data["v3alertsHeadlines"].alerts[0].areaName}`
-            document.getElementById("start").innerHTML = `<strong>Effective:</strong> ${effectivetime}`
-            document.getElementById("end").innerHTML = `<strong>Effective:</strong> ${expiretime}`
-            console.log("ALERT, " + alert.headlineText)
-            alertCard.style.display = "block"
-            alertCard.style.animation = "alertintro 1s ease"
-            alertCard.style.marginLeft = "884px";
-            alertCard.style.marginTop = "551px"
-
-document.getElementById("close-button").addEventListener("click", function() {
-    const alertCard = document.getElementById("alert-card");
-    alertCard.style.animation = "alertslide 1s ease";
-
-    alertCard.addEventListener("animationend", function() {
-        alertCard.style.display = "none";
-    }, { once: true }); // Listen for the animation end event once
-});
-        } 
     }
-    // Example: Fetch and display alerts for a specific location (Chicago, IL)
+        // Fetch Alerts
+        async function fetchWeatherData(lat, lng) {
+    const apiKey = '8de2d8b3a93542c9a2d8b3a935a2c909';
+    const apiUrl = `https://api.weather.com/v3/aggcommon/v3-wx-almanac-daily-1day;v3alertsHeadlines;v3-wx-observations-current;v3-wx-forecast-daily-7day?geocode=${lat},${lng}&format=json&language=en-US&units=e&day=16&month=10&apiKey=${apiKey}`;
+    
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    console.log(data);
+
+    // Existing weather data code here
+
+    // Fetch Alerts
+    const alertContainer = document.getElementById('alert-container');
+    const alerts = data["v3alertsHeadlines"].alerts;
+
+    if (alerts && alerts.length > 0) {
+        alertContainer.innerHTML = ''; // Clear previous alerts
+        alerts.forEach((alert, index) => {
+            const alertCard = document.createElement('div');
+            alertCard.className = 'alert-card';
+
+            const closeButton = document.createElement('span');
+            closeButton.className = 'close-button';
+            closeButton.innerHTML = '&times;';
+            closeButton.addEventListener('click', () => {
+                alertCard.style.animation = 'alertslide 1s ease';
+                alertCard.addEventListener('animationend', () => {
+                    alertCard.remove();
+                }, { once: true });
+            });
+
+            const effectivetime = new Date(alert.issueTimeLocal).toLocaleString('en-US', {
+                timeStyle: 'short',
+                dateStyle: 'short'
+            });
+
+            const expiretime = new Date(alert.expireTimeLocal).toLocaleString('en-US', {
+                timeStyle: 'short',
+                dateStyle: 'short'
+            });
+
+            alertCard.innerHTML = `
+                <h2>${alert.headlineText}</h2>
+                <p><strong>Event:</strong> ${alert.eventDescription}</p>
+                <p id="involved"><strong>For:</strong> ${alert.areaName}</p>
+                <p id="start"><strong>Effective:</strong> ${effectivetime}</p>
+                <p id="end"><strong>Expires:</strong> ${expiretime}</p>
+                <p>${alert.detailText}</p>
+            `;
+            alertCard.appendChild(closeButton);
+            alertContainer.appendChild(alertCard);
+        });
+    } else {
+        alertContainer.innerHTML = '<p>No weather alerts at this time.</p>';
+    }
+}
+
+fetchWeatherData(lat,lng);
+
+
+    }
 </script>
