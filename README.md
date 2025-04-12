@@ -1,5 +1,4 @@
 # weatherDashboard-Revised
 Welcome to the new WeatherDashboard! 
-Version 3.0 (Continuing from the Previous Version)
-
-This is a work in progress, so expect more features to come!
+This project currently has gone dormant as of now, has I have put focus on some of my other projects.
+I'll return to this project some day.
